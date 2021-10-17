@@ -40,3 +40,7 @@ To help you plan your tests, here are some functional requirements for the app,
     3. The cats are presented in descending order of awesomeness.
 5.  Only admin users are able to delete cats from the list.
 6.  Any changes to the cat list are persisted between visits to the app.
+
+## Attribution
+
+All cat images are used without modification from https://placekitten.com/attribution.html.
