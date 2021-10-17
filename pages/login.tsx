@@ -32,8 +32,6 @@ const Login = () => {
     const { setToken } = useContext(AuthContext);
     const router = useRouter();
 
-    // TODO: Show a sad cat face on any error
-
     return (
         <Container>
             <Formik
@@ -52,7 +50,6 @@ const Login = () => {
                             if ('response' in err) {
                                 const errorMessage = `${err.response.status}: ${err.response.data?.error}`;
 
-                                // TODO: Handle the error
                                 console.error(errorMessage);
                             }
                         });

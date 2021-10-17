@@ -5,8 +5,6 @@ import { Kitty } from '../../types/Kitty';
 
 // Bleeding-edge persistence layer
 
-// TODO: better image storage
-
 const defaultDataPath = path.resolve('./public/initial_data.json');
 
 const dataPath = path.resolve('./public/data.json');

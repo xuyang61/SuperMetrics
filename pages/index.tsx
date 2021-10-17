@@ -49,8 +49,8 @@ const Home: NextPage = () => {
                             awesomeness: getAwesomenessOfName(kitty.name),
                         }))
                     )
-                ) // TODO: Don't do this
-                .catch((err: unknown) => err), // TODO: Handle error
+                )
+                .catch((err: unknown) => err),
     });
 
     if (isLoading) {
