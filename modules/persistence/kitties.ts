@@ -40,3 +40,26 @@ export const deleteKitty = async (name: string): Promise<boolean> => {
 
     return true;
 };
+
+export const renameKitty = async (
+    oldName: string,
+    newName: string
+): Promise<boolean> => {
+    const initialData = await readKitties();
+
+    const toRename = initialData.find(({ name }) => name === oldName);
+
+    if (!toRename) {
+        return false;
+    }
+
+    if (initialData.filter(({ name }) => name === newName).length > 0) {
+        return false;
+    }
+
+    toRename.name = newName;
+
+    await writeKitties(initialData);
+
+    return true;
+};

@@ -8,6 +8,8 @@ It is your task to spend 2-3 hours setting up what you consider to be the most i
 
 You should feel free to alter the code to make it more testable, but we will not evaluate you on the quality of any changes you may make. As this code was built without tests it may well contain real bugs - in which case feel free to fix them.
 
+Note that the code in this repository is not indicative of the standard quality of Supermetrics code, but was thrown together quickly for this assessment.
+
 ## Running the test app
 
 This is a relatively simple Next.js app written in TypeScript. To run it you should,
@@ -39,7 +41,8 @@ To help you plan your tests, here are some functional requirements for the app,
     2. Awesomeness is calculated as the sum of the ASCII character codes for the letters of the cat's name (cats only user ASCII characters in their names). However if the cat's name is exactly "James", the awesomeness is infinite.
     3. The cats are presented in descending order of awesomeness.
 5.  Only admin users are able to delete cats from the list.
-6.  Any changes to the cat list are persisted between visits to the app.
+6.  All logged-in users may rename cats but 2 cats may never share a name (cats are not picky about their exact names but desire to feel unique)
+7.  Any changes to the cat list are persisted between visits to the app.
 
 ## Attribution
 

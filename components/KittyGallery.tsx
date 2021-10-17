@@ -6,6 +6,7 @@ import { KittyCard } from './KittyCard';
 interface Props {
     kitties: EvaluatedKitty[];
     onDelete?: (name: string) => unknown;
+    onRename?: (oldName: string, newName: string) => unknown;
 }
 
 const Container = styled.div`
@@ -46,12 +47,23 @@ const KittyScore = ({
     </KittyScoreContainer>
 );
 
-export const KittyGallery: ComponentType<Props> = ({ kitties, onDelete }) => (
+export const KittyGallery: ComponentType<Props> = ({
+    kitties,
+    onDelete,
+    onRename,
+}) => (
     <Container>
         {kitties?.map((kitty, index) => (
             <KittyItem key={kitty.name}>
                 <KittyScore rank={index + 1} awesomeness={kitty.awesomeness} />
-                <KittyCard kitty={kitty} onDelete={onDelete} />
+                <KittyCard
+                    kitty={kitty}
+                    onDelete={onDelete}
+                    onRename={onRename}
+                    nameValidator={(potentialName) =>
+                        !kitties.find(({ name }) => name === potentialName)
+                    }
+                />
             </KittyItem>
         ))}
     </Container>

@@ -67,21 +67,35 @@ const Home: NextPage = () => {
 
     const deleteKitty = async (name: string) => {
         axios
-            .delete(`http://${process.env.NEXT_PUBLIC_API_URL}/api/kitty`, {
-                params: {
-                    name,
-                },
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
+            .delete(
+                `http://${process.env.NEXT_PUBLIC_API_URL}/api/kitties/${name}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
             .then(() => refetch());
     };
+
+    const renameKitty = async (oldName: string, newName: string) =>
+        axios
+            .put(
+                `http://${process.env.NEXT_PUBLIC_API_URL}/api/kitties/${oldName}`,
+                { newName },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
+            .then(() => refetch());
 
     return (
         <KittyGallery
             kitties={kitties}
-            onDelete={isAdmin() ? deleteKitty : undefined}
+            onDelete={isAdmin?.() ? deleteKitty : undefined}
+            onRename={renameKitty}
         />
     );
 };

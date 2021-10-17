@@ -1,11 +1,14 @@
-import React, { ComponentType } from 'react';
+import React, { ComponentType, useState } from 'react';
 import styled from 'styled-components';
-import { XCircle } from 'react-feather';
+import { XCircle, Save } from 'react-feather';
 import { EvaluatedKitty } from '../types/EvaluatedKitty';
+import ContentEditable from 'react-contenteditable';
 
 interface Props {
     kitty: EvaluatedKitty;
     onDelete?: (name: string) => unknown;
+    onRename?: (oldName: string, newName: string) => unknown;
+    nameValidator?: (name: string) => boolean;
 }
 
 const CardContainer = styled.div`
@@ -45,13 +48,48 @@ const CloseIcon = styled(XCircle)`
     color: red;
 `;
 
+const SaveIcon = styled(Save)`
+    position: absolute;
+    right: 30px;
+    top: 5px;
+`;
+
 export const KittyCard: ComponentType<Props> = ({
     kitty: { name, pictureUrl },
     onDelete,
+    onRename,
+    nameValidator,
 }) => {
+    const [originalName, ,] = useState(name);
+    const [inputName, setInputName] = useState(name);
+
+    const isPendingNameChange = originalName !== inputName;
+    const nameIsValid = nameValidator?.(inputName) ?? true;
+
+    const saveIconColor = !isPendingNameChange
+        ? 'gray'
+        : !nameIsValid
+        ? 'red'
+        : 'green';
+
     return (
         <CardContainer>
-            <Name>{name}</Name>
+            <Name>
+                <ContentEditable
+                    html={inputName}
+                    onChange={(evt) => {
+                        setInputName(evt.target.value);
+                    }}
+                />
+            </Name>
+            <SaveIcon
+                onClick={() =>
+                    isPendingNameChange &&
+                    nameIsValid &&
+                    onRename?.(originalName, inputName)
+                }
+                color={saveIconColor}
+            />
             {onDelete ? <CloseIcon onClick={() => onDelete(name)} /> : null}
             <ImageContainer>
                 <Image src={pictureUrl} />

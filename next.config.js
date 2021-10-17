@@ -3,9 +3,9 @@ module.exports = {
     target: 'serverless',
     async rewrites() {
         return [
-            // Rewrite everything to `pages/index`
+            // Rewrite pages requests to `pages/index` (NOTE: this probably breaks dynamic pages)
             {
-                source: '/:any*',
+                source: '/pages/:any*',
                 destination: '/',
             },
         ];
