@@ -1,39 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Supermetrics Test Automation Assessment
 
-## Getting Started
+## Introduction
 
-First, run the development server:
+This repo contains the code for an exciting new product, Supermetrics Kitty Manager. Unfortunately, it has been built without any tests at all and may contain serious production bugs.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+It is your task to spend 2-3 hours setting up what you consider to be the most important tests for this codebase. You should be prepared to discuss your decisions in an interview, and also to be able to elaborate on how you would continue testing this app if you had more time.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+You should feel free to alter the code to make it more testable, but we will not evaluate you on the quality of any changes you may make. As this code was built without tests it may well contain real bugs - in which case feel free to fix them.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Running the test app
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+This is a relatively simple Next.js app written in TypeScript. To run it you should,
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+1. Install dependencies with `yarn`
+2. Start the dev server with `yarn dev`
 
-## Learn More
+API routes have been used to simulate the presence of a backend, the code there is not even close to production-ready but should suffice for this task.
 
-To learn more about Next.js, take a look at the following resources:
+There is a small degree of persistence in the app data. To reset the app data you can do one of the following,
 
--   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
--   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-   GET `localhost:3000/api/reset`
+-   Click the `Reset` button in the top-right of the running app
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+The valid login credentials for the app are,
 
-## Deploy on Vercel
+1. Username: "admin", password: "adminpass" for admin user
+2. Username: 'user', password: "helloworld" for normal user
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Functional requirements
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+To help you plan your tests, here are some functional requirements for the app,
 
-# Functional requirements
-
--   User can log in, as either an admin role or user role
--   User cannot access any page other than /login without being logged-in
+1.  Users can log in by providing a user name and password
+2.  When not logged-in, only the login page can be visited by a user
+3.  Logged-in users are categorised as "normal users" or "admin users"
+4.  All logged-in users are able to see a list of cats on the home page
+    1. This list includes a name, picture, awesomeness rating and rank (in order of descending awesomeness) for each cat
+    2. Awesomeness is calculated as the sum of the ASCII character codes for the letters of the cat's name (cats only user ASCII characters in their names). However if the cat's name is exactly "James", the awesomeness is infinite.
+    3. The cats are presented in descending order of awesomeness.
+5.  Only admin users are able to delete cats from the list.
+6.  Any changes to the cat list are persisted between visits to the app.
