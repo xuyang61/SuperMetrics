@@ -34,24 +34,22 @@ const Home: NextPage = () => {
         isLoading,
         error,
         refetch,
-    } = useQuery<EvaluatedKitty[]>('kitties', {
-        queryFn: async () =>
-            await axios
-                .get(`http://${process.env.NEXT_PUBLIC_API_URL}/api/kitties`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                })
-                .then((resp) =>
-                    sortKitties(
-                        (resp.data as Kitty[]).map((kitty) => ({
-                            ...kitty,
-                            awesomeness: getAwesomenessOfName(kitty.name),
-                        }))
-                    )
+    } = useQuery<EvaluatedKitty[]>('kitties', async () =>
+        axios
+            .get(`http://${process.env.NEXT_PUBLIC_API_URL}/api/kitties`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            .then((resp) =>
+                sortKitties(
+                    (resp.data as Kitty[]).map((kitty) => ({
+                        ...kitty,
+                        awesomeness: getAwesomenessOfName(kitty.name),
+                    }))
                 )
-                .catch((err: unknown) => err),
-    });
+            )
+    );
 
     if (isLoading) {
         return (

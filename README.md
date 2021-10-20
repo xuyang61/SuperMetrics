@@ -8,7 +8,11 @@ It is your task to spend 2-3 hours setting up what you consider to be the most i
 
 You should feel free to alter the code to make it more testable, but we will not evaluate you on the quality of any changes you may make. As this code was built without tests it may well contain real bugs - in which case feel free to fix them.
 
-Note that the code in this repository is not indicative of the standard quality of Supermetrics code, but was thrown together quickly for this assessment.
+Note that the code in this repository is not indicative of the standard quality of Supermetrics code, it was created for assignment purposes only.
+
+## Submitting the task
+
+Copy this code to a new repository to work in. Please send us a link to a publicly-accessibly repository with the changes. You do not need to use GitHub. Do not make a pull request to this repository, and do not send us a zipped repository.
 
 ## Running the test app
 
