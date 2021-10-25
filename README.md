@@ -4,7 +4,7 @@
 
 This repo contains the code for an exciting new product, Supermetrics Kitty Manager. Unfortunately, it has been built without any tests at all and may contain serious production bugs.
 
-It is your task to spend 2-3 hours setting up what you consider to be the most important tests for this codebase. You should be prepared to discuss your decisions in an interview, and also to be able to elaborate on how you would continue testing this app if you had more time.
+It is your task to spend 2-3 hours setting up what you consider to be the most important tests for this codebase. You should be prepared to discuss your decisions in an interview, and also to be able to elaborate on how you would continue testing this app if you had more time. We are primarily looking for evidence of your skills in building and managing automated tests with this assignment, but you may consider manual testing as an additional part of your strategy.
 
 You should feel free to alter the code to make it more testable, but we will not evaluate you on the quality of any changes you may make. As this code was built without tests it may well contain real bugs - in which case feel free to fix them.
 
